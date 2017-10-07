@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"> <!--lang บอกว่าภาษาหลักที่เราใช้เป็นภาษาอะไร-->
+<head>
+	<meta charset="UTF-8"> <!--metaสั่งให้ตัวคอนเทนต์ที่เเสดงออกมามีลักษณะอย่างไร UTF-8 กำหนดคาร์เเรคเตอร์ว่าเอาตัวไหนมาเเสดงผล-->
+	<title>CMM 19</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
+
+	<link rel="stylesheet" href="/assets/main.css">
+
+	{% block stylesheet %} {% endblock %}
+</head>
+<body>
+	{% include 'layout/header.twig' ignore missing %}
+
+	{% block content %}
+	{% endblock %}
+
+</body>
+</html>

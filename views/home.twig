@@ -1,28 +1,13 @@
-<!DOCTYPE html>
-<html lang="en"> <!--lang บอกว่าภาษาหลักที่เราใช้เป็นภาษาอะไร-->
-<head>
-	<meta charset="UTF-8"> <!--metaสั่งให้ตัวคอนเทนต์ที่เเสดงออกมามีลักษณะอย่างไร UTF-8 กำหนดคาร์เเรคเตอร์ว่าเอาตัวไหนมาเเสดงผล-->
-	<title>CMM 19</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
-	<link rel="stylesheet" href="/assets/home.css">
-</head>
-<body> <!--ไว้เก็บข้อมูลที่จะใช้เเสดงผลในหน้าเว็บเบราเซอร์ทั้งหมด-->
-	<!--<h1 class="has-text-centered">สวัสดีเด้อหล่าา</h1> เป็นการทำให้ข้อความอยู่ตรงกลาง-->
-	<header><!--ส่วนหัวของเว็บไซต์-->
-		<!--เป็นการกำหนดขนาด โดยปกติการนำรูปมาทำเว็บไม่ควรทำรูปที่มีขนาดเท่ากับขนาดที่ใช้จริงเพื่อให้เว็บสามารถรองรับได้กับทุกอุปกรณ์ ควรที่จะทำให้มีขนาดโอเวอร์ไซส์กว่าประมา 2 เท่า เเล้วใช้การกำหนดขนาดให้เล็กลงตามคำสั่งด้านล่าง-->
-		<div class="has-text-centered"> <!--เนื่องจากการจะทำให้รูปภาพอยู่ตรงกลาง ไม่สามารถทำโดยการใส class เลยเหมือนกับตัวอย่างด้านบนได้ จึงมีการใส่ div เข้ามาเพื่อช่วยให้สามารถใช้ class เพื่อกำหนดการจัดการข้อความหรือรูปภาพให้อยู่ตรงกลางได้ **สามารถนำ div มาใช้ได้ในทุกกรณีที่มีปัญหาอย่างที่กล่าวมาข้างต้น-->
-			<!--การใช้div จะต้องดูรูปเเบการเเสดงผลของโค้ดในเเต่ละประเภท อย่าง image จะมีรูปเเบบการเเสดงโค้ดในบรรทัดเดียว ซึ่งส่วนของ div จะเเสดงผลคนละบรรทัดกัน-->
-			<!--ใช้เพื่อให้การเขียนโค้ดสั้นลงเมื่อต้องการใช้ภาษาcssเข้ามาผสมกับhtml-->
-		<img src="/assets/images/logo.png" alt="" width="145" height="auto"></div>
+{% extends 'layout/base.twig' %}
 
-		<nav class="navbar-tabs"><!--ส่วนของnavigation-->
-			<!--ส่วนของเนวิเกชั่นบาร์ ที่สามารถกดเชื่อมต่อไปที่ลิงค์อื่นได้-->
-			<a href="#" class="navbar-item">WORK</a> <!-- #ทำให้เวลาเรากดลิงค์เว็บเเล้วมันไม่ไปไหนใช้ในการtest-->
-			<a href="#" class="navbar-item">WORKED</a>
-			<a href="#" class="navbar-item">WORKING</a>
-			<a href="#" class="navbar-item">WORK WORK WORK</a>
-		</nav>
-	</header>
+{% block content %}
+	<link rel="stylesheet" href="/assets/home.css">
+{% endblock %}
+
+{% block content %}
+ <!--ไว้เก็บข้อมูลที่จะใช้เเสดงผลในหน้าเว็บเบราเซอร์ทั้งหมด-->
+	<!--<h1 class="has-text-centered">สวัสดีเด้อหล่าา</h1> เป็นการทำให้ข้อความอยู่ตรงกลาง-->
+	
 
 	<main>
 		<sction class="banner">
@@ -30,35 +15,20 @@
 				<div class="columns"> <!--เป็นตัวที่บอกว่าจะมีguridอยู่ในนี้ โดยทั่วไปจะเเบ่งหน้าจอออกเป็น12 คอลัมภ์-->
 					<!--<div class="column">ถ้าจะทำข้อความใส่ในรูป ให้ทำตามด้านล่าง ถ้าระบุในต่อจะเป็นการบอกว่ารูปแบนเนอร์ของเราจะมีขนาดว้างกี่คอลัมเเต่ถ้าไม่บอกโปรเเกรมจะเข้าใจว่าใช้ตวามกว้าง12คอลัมเลย
 						<img src="/assets/images/home/banner/highlight.jpg" alt="">-->
-						<div class="column highlight-item">
-							<h1>สวัสดีเ้ดอหล่าาา</h1>
+						<div class="column highlight-item" style="background-image: url({{ highlight.url }})">
+							<h1>{{ highlight.title }}</h1>
 						</div>
-
-					</div>
 				</div>
 			</div>
 
 				<div class="thumbnail">
 					<div class="columns is-marginless">
-						<div class="column thumbnail-item is-paddingless" style="background-image: url(/assets/images/home/banner/thumbnail-1.jpg);"> <!--is-paddingless ใช้ลบช่องว่างของรูป(ขอบสีขาว)-->
-							La La La
+						{% for item in thumbnail %}
+						<div class="column thumbnail-item is-paddingless" style="background-image: url({{ item.url }});"> <!--is-paddingless ใช้ลบช่องว่างของรูป(ขอบสีขาว)-->
+							{{ item.title }}
 							<!--<img src="/assets/images/home/banner/thumbnail-1.jpg" alt="" width="100%" height="auto">-->
 						</div>
-
-						<div class="column thumbnail-item is-paddingless" style="background-image: url(/assets/images/home/banner/thumbnail-2.jpg);">
-							La La La
-							<!--<img src="/assets/images/home/banner/thumbnail-1.jpg" alt="" width="100%" height="auto">-->
-						</div>
-
-						<div class="column thumbnail-item is-paddingless" style="background-image: url(/assets/images/home/banner/thumbnail-3.jpg);">
-							La La La
-							
-						</div>
-
-						<div class="column thumbnail-item is-paddingless" style="background-image: url(/assets/images/home/banner/thumbnail-4.jpg);">
-							La La La
-							<!--<img src="/assets/images/home/banner/thumbnail-1.jpg" alt="" width="100%" height="auto">-->
-						</div>
+						{% endfor %}
 					</div>
 				</div>
 		</sction>
@@ -215,5 +185,4 @@
 
 	</main>
 
-	</body>
-</html>
+{% endblock %}
